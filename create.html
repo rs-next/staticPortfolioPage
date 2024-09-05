@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Create Portfolio</title>
+        <link rel="stylesheet" href="styles.css" />
+        <script src="vue.global.js"></script>
+        <!-- Vue.js 3 로컬 파일 -->
+
+        <script src="app.js" defer></script>
+    </head>
+    <body>
+        <div id="app">
+            <h1>포트폴리오 작성</h1>
+            <form @submit.prevent="createPortfolio">
+                <label for="title">제목</label>
+                <input
+                    type="text"
+                    id="title"
+                    v-model="newPortfolio.title"
+                    required
+                />
+
+                <label for="content">내용</label>
+                <textarea
+                    id="content"
+                    v-model="newPortfolio.content"
+                    required
+                ></textarea>
+
+                <label for="image">이미지 업로드</label>
+                <input
+                    type="file"
+                    id="image"
+                    @change="onFileChange"
+                    accept="image/*"
+                    required
+                />
+
+                <div v-if="newPortfolio.imageUrl">
+                    <h3>이미지 미리보기</h3>
+                    <img
+                        :src="newPortfolio.imageUrl"
+                        alt="미리보기 이미지"
+                        style="max-width: 300px"
+                    />
+                </div>
+
+                <button type="submit">저장하기</button>
+            </form>
+            <a href="index.html">목록으로 돌아가기</a>
+        </div>
+    </body>
+</html>

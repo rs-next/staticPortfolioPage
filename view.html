@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Portfolio View</title>
+        <link rel="stylesheet" href="styles.css" />
+        <script src="vue.global.js"></script>
+        <!-- Vue.js 3 로컬 파일 -->
+
+        <script src="app.js" defer></script>
+    </head>
+    <body>
+        <div id="app">
+            <!-- 포트폴리오 데이터가 존재할 때만 렌더링 -->
+            <div v-if="portfolio">
+                <h1>{{ portfolio.title }}</h1>
+                <img
+                    :src="portfolio.imageUrl"
+                    alt="Portfolio Image"
+                    class="portfolio-image"
+                />
+                <p>{{ portfolio.createdAt }}</p>
+                <p>{{ portfolio.content }}</p>
+
+                <a href="index.html">목록으로 돌아가기</a>
+                <a :href="'edit.html?id=' + portfolioId"
+                    ><button>수정</button></a
+                >
+                <button @click="deletePortfolio">삭제</button>
+            </div>
+
+            <!-- 데이터가 없을 때 (로드되지 않았을 때) 표시할 메시지 -->
+            <div v-else>
+                <p>
+                    포트폴리오 데이터를 불러오지 못했습니다. ID가 유효하지
+                    않거나 데이터가 존재하지 않습니다.
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
